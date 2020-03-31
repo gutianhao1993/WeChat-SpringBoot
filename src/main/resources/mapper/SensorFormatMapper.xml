@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yaao.dao.SensorDao">
+
+    <select id="getAllSensor" resultType="com.yaao.entity.SensorFormat">
+		SELECT * FROM S3ConfigDB.dbo.SensorFormatTable;
+	</select>
+
+    <select id="getSensorFormatBySensorCode" resultType="com.yaao.entity.SensorFormat">
+		SELECT * FROM S3ConfigDB.dbo.SensorFormatTable WHERE SensorCode = #{sensorCode};
+	</select>
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yaao.dao.SendMessageDao">
+    <sql id="conditions">
+        <if test="flag == 1 || flag == 2">
+            UPDATE S3DataDb.dbo.SMSSendWeixinTable SET Flag = #{flag},Reserver = 0 WHERE ID = #{ID};
+        </if>
+        <if test="flag == 3">
+            UPDATE S3DataDb.dbo.SMSSendWeixinTable SET Flag = #{flag},Reserver = 0,ExpireFlag = 1 WHERE ID = #{ID};
+        </if>
+    </sql>
+    <select id="sendMessageByAlarmID" resultType="com.yaao.entity.Alarm">
+        SELECT * FROM S3DataDb.dbo.SMSSendWeixinTable WHERE ID = #{ID};
+    </select>
+
+    <select id="getAlarmIDByFlag" resultType="com.yaao.entity.Alarm">
+        SELECT DISTINCT ID,MemberID FROM S3DataDb.dbo.SMSSendWeixinTable WHERE Flag = #{flag} AND Reserver &lt; 3
+        AND Reserver IS NOT NULL AND ExpireFlag = 0;
+    </select>
+
+    <update id="setFlag" parameterType="Integer">
+        <include refid="conditions"></include>
+    </update>
+
+    <select id="getOpenID" parameterType="Integer" resultType="String">
+        select distinct openid from S3ConfigDb.dbo.UserBindingTable u
+        INNER join S3DataDb.dbo.SMSSendWeixinTable s ON u.UserID = s.MemberID
+        where MemberID = #{memberID};
+    </select>
+
+    <update id="setReserver">
+        UPDATE S3DataDb.dbo.SMSSendWeixinTable SET Reserver = Reserver + 1 WHERE ID = #{ID};
+    </update>
+
+    <update id="setExpireSendFailMsg">
+        UPDATE S3DataDb.dbo.SMSSendWeixinTable SET ExpireFlag = 1 WHERE Flag IN (0,2,3) AND DATEDIFF(HOUR,AlarmTime,GETDATE()) &gt; 1 AND ExpireFlag = 0;
+    </update>
+</mapper>

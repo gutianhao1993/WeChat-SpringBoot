@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yaao.dao.AreaDao">
+
+    <select id="getAreas" resultType="com.yaao.entity.Area">
+		SELECT AreaID,ParentID,layer,AreaName,NodeType,Sotype,
+		ImgUrl,HasSubNode,DSC,resourceID,ParentPath FROM S3ConfigDB.dbo.AreaTable;
+	</select>
+
+    <select id="getSubLocations" resultType="com.yaao.entity.Area">
+		SELECT AreaID,ParentID,layer,AreaName,NodeType,Sotype,
+		ImgUrl,HasSubNode,DSC,resourceID,ParentPath FROM S3ConfigDB.dbo.AreaTable
+		WHERE ParentID = #{areaID};
+	</select>
+
+    <select id="getSuNames" resultType="String">
+		SELECT DISTINCT AreaName FROM S3ConfigDB.dbo.AreaTable WHERE NodeType = '4';
+	</select>
+
+    <select id="getAreaByAreaId" resultType="com.yaao.entity.Area">
+		SELECT AreaID,ParentID,layer,AreaName,NodeType,Sotype,
+		ImgUrl,HasSubNode,DSC,resourceID,ParentPath FROM S3ConfigDB.dbo.AreaTable WHERE AreaID = #{areaID};
+	</select>
+</mapper>

@@ -1,0 +1,33 @@
+package com.yaao.entity;
+
+/**
+ * 微信自定义菜单
+ *
+ * @author GuTianHao
+ */
+public class CommonButton extends Button {
+    /**
+     * 菜单类型
+     */
+    private String type;
+    /**
+     * key值
+     */
+    private String key;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+}

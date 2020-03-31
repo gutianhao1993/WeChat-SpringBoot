@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yaao.dao.RealTimeAlarmDao">
+
+    <sql id="conditions">
+        <if test="areaName != null and areaName != ''">
+            AND ar.AreaName like ('%' + #{areaName} + '%')
+        </if>
+        <if test="startTime != null and startTime != ''">
+            AND StartTime >= #{startTime}
+        </if>
+        <if test="alarmLevel != null and alarmLevel != ''">
+            AND AlarmLevel = #{alarmLevel}
+        </if>
+        <if test="areaID != null and areaID != ''">
+            AND (ar.AreaID IN (SELECT AreaID FROM S3ConfigDB.dbo.AreaTable
+            WHERE ',' + ParentPath + ',' LIKE '%,' + #{areaID} + ',%')
+            OR ar.AreaID = #{areaID})
+        </if>
+    </sql>
+
+    <select id="getRealTimeAlarm" resultType="com.yaao.entity.RealTimeAlarm">
+        SELECT top (#{pageSize}) c.* FROM (SELECT Row_Number()
+        over (ORDER BY AlarmID) AS rownumber, * FROM (
+        SELECT DISTINCT a.AlarmID,a.AlarmLevel,a.SoCode,ar.AreaName,a.Dsc,so.SoName,a.StartTime FROM
+        S3ConfigDB.dbo.SoTable so
+        INNER JOIN S3DataDB.dbo.AlarmTable a ON so.SoCode = a.SoCode AND a.FSUID = so.FSUID
+        INNER JOIN S3ConfigDB.dbo.AreaTable ar ON so.AreaID = ar.AreaID
+        WHERE a.EndTime IS NULL AND a.AlarmID IS NOT NULL
+        <include refid="conditions"/>
+        ) AS aa) AS c
+        WHERE rownumber > #{startIndex} ORDER BY StartTime;
+    </select>
+
+    <select id="getRowCount" resultType="int">
+        SELECT count(*) FROM (
+        SELECT DISTINCT a.AlarmID,a.AlarmLevel,a.SoCode,ar.AreaName,a.Dsc,so.SoName,a.StartTime FROM
+        S3ConfigDB.dbo.SoTable so
+        INNER JOIN S3DataDB.dbo.AlarmTable a ON so.SoCode = a.SoCode AND a.FSUID = so.FSUID
+        INNER JOIN S3ConfigDB.dbo.AreaTable ar ON so.AreaID = ar.AreaID
+        WHERE a.EndTime IS NULL AND a.AlarmID IS NOT NULL
+        <include refid="conditions"/>
+        ) AS c
+    </select>
+</mapper>

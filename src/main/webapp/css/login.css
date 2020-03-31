@@ -1,0 +1,165 @@
+body {
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+.jumbotron {
+    height: 100%;
+}
+
+/* .loginBg{
+	position: fixed;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+} */
+footer {
+    position: fixed;
+    bottom: 1%;
+    margin-left: calc((100% - 443.39px) / 2);
+    color: #fff;
+}
+abc
+.container img {
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.container h3 {
+    margin: 0;
+}
+
+.title {
+    display: inline-block;
+}
+
+/* 登录 */
+.login_div {
+    width: 400px;
+    border: 1px solid #eee;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.16);
+    border-radius: 5px;
+    box-shadow: 0px 3px 7px 0px #ccc;
+    padding-top: 0;
+}
+
+.login_div form {
+    padding: 10% 13%;
+    border-top: 2px solid rgba(0, 0, 0, 0.72);
+    box-shadow: -2px 0px 6px 1px #ccc;
+}
+
+/* 按钮  */
+.button {
+    height: 41px;
+    width: 88px;
+    position: relative;
+    border: none;
+    display: inline-block;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: rgba(27, 24, 24, 0.88);
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.4);
+    font-size: 14px;
+}
+
+.btn_swap {
+    perspective: 500px;
+    -webkit-perspective: 500px;
+    -moz-perspective: 500px;
+}
+
+.btn_swap div {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    border: #000000 solid 1px;
+    pointer-events: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    top: 0;
+    left: 0;
+    font-size: 15px;
+}
+
+.btn_swap div:nth-child(1) {
+    color: #000000;
+    background-color: #000000;
+    transform: rotateX(90deg);
+    -webkit-transform: rotateX(90deg);
+    -moz-transform: rotateX(90deg);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform-origin: 50% 50% -20px;
+    -webkit-transform-origin: 50% 50% -20px;
+    -moz-transform-origin: 50% 50% -20px;
+}
+
+.btn_swap div:nth-child(2) {
+    color: #000000;
+    background-color: #a9d7f6;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform-origin: 50% 50% -20px;
+    -webkit-transform-origin: 50% 50% -20px;
+    -moz-transform-origin: 50% 50% -20px;
+}
+
+.btn_swap:hover div:nth-child(1) {
+    color: #ffffff;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+}
+
+.btn_swap:hover div:nth-child(2) {
+    background-color: #000000;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(-90deg);
+    -webkit-transform: rotateX(-90deg);
+    -moz-transform: rotateX(-90deg);
+}
+
+/* 背景文字 */
+.bgFont {
+    text-transform: uppercase;
+    letter-spacing: .5em;
+    display: inline-block;
+    border: 4px double rgba(255, 255, 255, 0.25);
+    border-width: 4px 0;
+    padding: 1em 0em;
+    position: absolute;
+    top: 18%;
+    left: 20%;
+    width: 33em;
+    margin: 0 0 0 -20em;
+    transform: rotate(-30deg);
+    text-align: center;
+}
+
+/* Animate Background Image */
+@-webkit-keyframes aitf {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+

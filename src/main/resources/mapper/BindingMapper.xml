@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yaao.dao.BindingDao">
+
+    <select id="findUserByName" parameterType="java.lang.String" resultType="com.yaao.entity.User">
+		SELECT UserID,LogName,Password FROM S3ConfigDb.dbo.Basic_UserTable WHERE LogName = #{logName};
+	</select>
+
+    <insert id="addOpenID">
+		INSERT INTO S3ConfigDb.dbo.UserBindingTable (OpenID,UserID,LogName,CreateTime,UpdateTime)
+		VALUES (#{openID},#{userID},#{logName},#{createTime},#{updateTime});
+	</insert>
+
+    <select id="checkOpenID" resultType="java.lang.String">
+		SELECT OpenID FROM S3ConfigDb.dbo.UserBindingTable WHERE OpenID = #{openID};
+	</select>
+
+    <select id="checkLogName" resultType="java.lang.String">
+		SELECT LogName FROM S3ConfigDb.dbo.UserBindingTable WHERE LogName = #{logName};
+	</select>
+</mapper>

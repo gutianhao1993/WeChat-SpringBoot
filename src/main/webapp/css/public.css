@@ -1,0 +1,307 @@
+ body {
+ 	font-family: 'Microsoft YaHei', FreeSans, sans-serif;
+ }
+ 
+ @-webkit-keyframes click-wave {
+  0% {
+    width: 15px;
+    height: 15px;
+    opacity: 0.35;
+    position: relative;
+    border: none;
+    outline:none;
+  }
+  100% {
+    width: 100px;
+    height: 100px;
+    margin-left: -40px;
+    margin-top: -50px;
+    opacity: 0.0;
+    border: none;
+    outline:none;
+  }
+}
+@-moz-keyframes click-wave {
+  0% {
+    width: 15px;
+    height: 15px;
+    opacity: 0.35;
+    position: relative;
+    border: none;
+    outline:none;
+  }
+  100% {
+    width: 100px;
+    height: 100px;
+    margin-left: -40px;
+    margin-top: -50px;
+    opacity: 0.0;
+    border: none;
+    outline:none;
+  }
+}
+@-o-keyframes click-wave {
+  0% {
+    width: 15px;
+    height: 15px;
+    opacity: 0.35;
+    position: relative;
+    border: none;
+    outline:none;
+  }
+  100% {
+    width: 100px;
+    height: 100px;
+    margin-left: -40px;
+    margin-top: -50px;
+    opacity: 0.0;
+    border: none;
+    outline:none;
+  }
+}
+@keyframes click-wave {
+  0% {
+    width: 15px;
+    height: 15px;
+    opacity: 0.35;
+    position: relative;
+    border: none;
+    outline:none;
+  }
+  100% {
+    width: 100px;
+    height: 100px;
+    margin-left: -40px;
+    margin-top: -50px;
+    opacity: 0.0;
+    border: none;
+    outline:none;
+  }
+} 
+.check_style input[type='checkbox'] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  -webkit-transition: all 0.15s ease-out 0;
+  -moz-transition: all 0.15s ease-out 0;
+  transition: all 0.15s ease-out 0;
+  background: #cbd1d8;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 0.5rem;
+  z-index: 1000;
+  width: 15px !important;
+  height: 15px !important;
+  line-height: 12px;
+}
+.check_style input[type='checkbox']:hover {
+  background: #9faab7;
+}
+.check_style input[type='checkbox']:checked {
+  background: #40e0d0;
+}
+.check_style input[type='checkbox']:checked::before {
+  width: 13px;
+  height: 13px;
+  position: relative;
+  content: '\2714';
+  display: inline-block;
+  text-align: center;
+  left:1px;
+  color:#fff;
+}
+.check_style input[type='checkbox']:checked:link::before,.check_style input[type='checkbox']:checked:active::before{
+	border:none !important;
+	border-color:red;
+	outline: none !important;
+	outline-offset:0; 
+}
+.check_style input[type='checkbox']:focus,.check_style input[type='checkbox']:link,
+.check_style input[type='checkbox']:active,.check_style input[type='checkbox']:visited{
+	border:none !important;
+	border-color:red;
+	outline: none !important;
+	outline-offset:0; 
+}
+.check_style input[type='checkbox']:checked::after {
+  -webkit-animation: click-wave 0.65s;
+  -moz-animation: click-wave 0.65s;
+  animation: click-wave 0.65s;
+  background: #40e0d0;
+  content: '';
+  display: block;
+  position: relative;
+  z-index: 100;
+}
+
+/* 按钮*/
+.button {
+	height: 28px;
+    width: 75px;
+	position: relative;
+	border: none;
+	display: inline-block;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	color: rgba(27, 24, 24, 0.88);
+	text-shadow: 1px 1px 0px rgba(255,255,255,0.4);
+	font-size: 14px;
+}
+
+.btn_swap {
+    perspective: 500px;
+    -webkit-perspective: 500px;
+    -moz-perspective: 500px;
+}
+
+.btn_swap div {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    padding: 5px;
+    border: #000000 solid 1px;
+    pointer-events: none;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    top:0;
+    left:0;
+    font-size: 14px;
+    height: 100%;
+}
+
+.btn_swap div:nth-child(1) {
+    color: #000000;
+    background-color: #000000;
+    transform: rotateX(90deg);
+    -webkit-transform: rotateX(90deg);
+    -moz-transform: rotateX(90deg);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform-origin: 50% 50% -14px;
+    -webkit-transform-origin: 50% 50% -14px;
+    -moz-transform-origin: 50% 50% -14px;
+}
+
+.btn_swap div:nth-child(2) {
+    color: #000000;
+    background-color: #a9d7f6;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform-origin: 50% 50% -14px;
+    -webkit-transform-origin: 50% 50% -14px;
+    -moz-transform-origin: 50% 50% -14px;
+}
+
+.btn_swap:hover div:nth-child(1) {
+    color: #fff;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(0deg);
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+}
+
+.btn_swap:hover div:nth-child(2) {
+    background-color: #000000;
+    transition: all 0.2s ease;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    transform: rotateX(-90deg);
+    -webkit-transform: rotateX(-90deg);
+    -moz-transform: rotateX(-90deg);
+}
+
+/* 列操作样式 */
+#colModal .modal-dialog {
+    width: 600;
+}
+
+#showColumn a {
+    font-size: 14px;
+}
+
+#showColumn li {
+    width: 50%;
+    display: inline-block;
+}
+
+#showColumn a label {
+    font-weight: normal;
+}
+
+.oper_btn a.colOperBtn {
+    color: #fff;
+    font-size: 17px;
+}
+
+.oper_btn a.colOperBtn:hover {
+    font-size: 19px;
+}
+
+.oper_btn {
+    display: inline-block;
+    float: right;
+    margin-right: 10;
+    margin-top: 6px;
+}
+
+.modal .nav>li>a{
+    padding: 6px 8px;
+    color: #9e9a9a;
+    border: 1px solid #9e9a9a;
+    border-bottom: transparent;
+    border-radius: 4px 4px 0 0 !important;
+}
+
+.modal .nav-tabs>li{
+	margin-bottom:0;
+}
+.modal .tab-content {
+    padding: 0;
+    border: 0;
+    padding-top: 3;
+}
+
+
+/* 日历控件样式 */
+.daterangepicker .ranges ul {
+    width: 94px !important;
+}
+
+.calendar select {
+    padding-top: 3px;
+}
+
+.daterangepicker select.monthselect,.daterangepicker select.yearselect {
+    width: 50%;
+    height: 25px;
+    vertical-align: middle;
+}
+
+@media (max-width: 800px){
+	.modal.fade .modal-dialog{
+		width: calc(100% - 100px);
+	}
+}
+
+
+.modal.fade .modal-dialog{
+	min-width: 640px;
+}
+
+.nav-ul{
+	padding : 0
+}
